@@ -17,6 +17,7 @@ export default gql`
     }
     type Mutation{
         createMovie(title: String!, year: Int!, genre: String): Movie
-        deleteMovie(title: String!): Boolean
+        deleteMovie(id: Int!): Movie
+        updateMovie(id: Int!, year: Int!): Movie
     }
 `;

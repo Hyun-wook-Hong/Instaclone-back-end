@@ -8,9 +8,8 @@ export default{
                 genre,
             }
         }),
-        deleteMovie: (_, { title }) => {
-            console.log(title);
-            return true;
-        },
-    }
+        deleteMovie: (_, { id }) => client.movie.delete({ where: { id } }),
+        updateMovie: (_, { id, year }) =>
+            client.movie.update({ where: { id }, data: { year } }),
+    },
 }
