@@ -1,0 +1,19 @@
+{
+  "name": "instaclone",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hyun-wook-Hong/Instaclone-back-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hyun-wook-Hong/Instaclone-back-end/issues"
+  },
+  "homepage": "https://github.com/Hyun-wook-Hong/Instaclone-back-end#readme"
+}
