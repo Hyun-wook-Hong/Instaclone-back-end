@@ -1,24 +1,22 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// datasource: 어떻게 Database에 연결되는가?
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-// generator client: 어떤 방식으로 데이터베이스와 상호작용 하는가?
 generator client {
   provider = "prisma-client-js"
 }
 
-// Movie Model 생성, Model = 데이터베이스 데이터
-// 데이터 타입에 물음표(?)를 붙이면 필수값이 아니라는것
-model Movie{
-  id        Int             @default(autoincrement()) @id
-  title     String 
-  year      Int
-  genre     String?
-  createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt
+model User{
+  id        Int       @id @default(autoincrement())
+  firstName String
+  lastName  String?
+  username  String    @unique
+  email     String    @unique
+  password  String 
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
