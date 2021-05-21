@@ -80,8 +80,8 @@ npm install dotenv
 
 # 5/19~ API Plan
 ## User: 완료된 요건은 ✔ 체크
-- [ ] Create Account
-- [ ] See Profile
+- [x] Create Account
+- [x] See Profile
 - [ ] Login
 - [ ] Edit Profile
 - [ ] Follow User

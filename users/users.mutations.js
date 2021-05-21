@@ -8,7 +8,9 @@ export default{
             _, 
             { firstName, lastName, username, email, password }
             ) => {
-                // 1. check if username or email are already on DB
+                // 예외처리 구문 추가
+                try{
+                    // 1. check if username or email are already on DB
                 const existingUser = await client.user.findFirst({
                     where: {
                         OR: [
@@ -20,7 +22,11 @@ export default{
                             }
                         ],
                     },
-                });                
+                }); 
+                // 이미 등록된 사용자라면 or 사용중인 이메일이라면 throw error   
+                if(existingUser){
+                    throw new Error("This username/password is already taken.");
+                }
                 // 2. hash password --> hashing 사용해서 암호화 + rainbow table 공격 방지를 위한 salting
                 const uglyPassword = await bcrypt.hash(password, 10);
                 
@@ -32,8 +38,10 @@ export default{
                     firstName, 
                     lastName, 
                     password:uglyPassword,
-                } })
-
+                } });
+                }catch(e){
+                    return e;
+                }
             },
     },
 };
