@@ -1,8 +1,8 @@
-import client from "../client";
+import client from "../../client";
 import bcrypt from "bcrypt";
 
 /* 사용자 계정 생성 Mutation */
-export default{
+export default {
     Mutation: {
         createAccount: async (
             _, 
@@ -19,7 +19,7 @@ export default{
                             },
                             {
                                 email,
-                            }
+                            },
                         ],
                     },
                 }); 
@@ -38,7 +38,8 @@ export default{
                     firstName, 
                     lastName, 
                     password:uglyPassword,
-                } });
+                } }
+                );
                 }catch(e){
                     return e;
                 }

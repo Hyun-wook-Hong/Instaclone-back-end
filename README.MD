@@ -82,7 +82,7 @@ npm install dotenv
 ## User: 완료된 요건은 ✔ 체크
 - [x] Create Account
 - [x] See Profile
-- [ ] Login
+- [x] Login
 - [ ] Edit Profile
 - [ ] Follow User
 - [ ] Unfollow User
