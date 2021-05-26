@@ -1,6 +1,7 @@
 import client from "../../client";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { protectResolver } from "../users.utils";
 
 export default {
     Mutation:{
@@ -14,9 +15,10 @@ export default {
             email,
             password: newPassword,
         },
-        { loggedInUser }
+        { loggedInUser, protectResolver }
         ) => {
-            console.log(loggedInUser);
+            // 로그인 안 한 상태면 Error 리턴
+            protectResolver(loggedInUser);
 
             /*password는 hash 값을 사용해야 하니 참조*/
             let uglyPassword = null;
