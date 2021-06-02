@@ -1,6 +1,8 @@
 import { protectedResolver } from "../users.utils";
 import client from "../../client";
 
+// followUser Resolver
+
 export default{
     Mutation: {
         followUser: 
