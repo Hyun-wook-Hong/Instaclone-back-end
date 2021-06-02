@@ -16,12 +16,19 @@ const resolverFn = async (
             },
             { loggedInUser }
 ) => {
-    /*avatar는 Promise형 Object*/
-    const { filename, createReadStream } = await avatar;
-    const readStream = createReadStream();
-    const writeStream = createWriteStream(process.cwd() + "/uploads/" + filename);
-    readStream.pipe(writeStream);
-
+    let avatarUrl = null;
+    if(avatar){
+        /*avatar는 Promise형 Object*/
+        const { filename, createReadStream } = await avatar;
+        // Random pattern file name create
+        const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
+        const readStream = createReadStream();
+        const writeStream = createWriteStream(process.cwd() 
+        + "/uploads/"+ newFilename );
+        readStream.pipe(writeStream);
+        // 임시
+        avatarUrl = `http://localhost:4000/static/${newFilename}`;
+    }
     /*password는 hash 값을 사용해야 하니 참조*/
     let uglyPassword = null;
     if(newPassword){
@@ -38,7 +45,8 @@ const resolverFn = async (
         username, 
         email, 
         bio,
-        ...(uglyPassword && {password: uglyPassword}),
+        ...( uglyPassword && { password: uglyPassword } ),
+        ...( avatarUrl    && { avatar: avatarUrl  } ),
     }, 
 });
     if(updatedUser.id){

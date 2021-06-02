@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
+    "preinstall": "npx npm-force-resolutions@0.0.3",
     "dev": "nodemon --exec babel-node server --delay 2",
     "migrate": "npx prisma migrate dev --preview-feature",
     "studio": "npx prisma studio"
@@ -22,11 +22,14 @@
   "dependencies": {
     "@prisma/client": "^2.22.1",
     "apollo-server": "^2.24.0",
+    "apollo-server-express": "^2.25.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^9.0.2",
+    "express": "^4.17.1",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.5",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",

@@ -31,18 +31,24 @@ export default {
                 const uglyPassword = await bcrypt.hash(password, 10);
                 
                 // 3. save and return the user
-                return client.user.create({ 
+                await client.user.create({ 
                 data: {
                     username, 
                     email, 
                     firstName, 
                     lastName, 
                     password:uglyPassword,
-                } }
-                );
+                }, 
+                    });
+                return{
+                    ok: true,
+                };
                 }catch(e){
-                    return e;
-                }
-            },
+                return {
+                    ok: false,
+                    error: "Can't create account.",
+                };
+            }
+        },
     },
 };

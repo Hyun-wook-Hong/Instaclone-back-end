@@ -83,7 +83,32 @@ npm install dotenv
 - [x] Create Account
 - [x] See Profile
 - [x] Login
-- [ ] Edit Profile
+- [x] Edit Profile
+- [x] Change Avatar (Image Upload)
 - [ ] Follow User
 - [ ] Unfollow User
-- [ ] Change Avatar (Image Upload)
+- [ ] Search Users
+- [ ] See Followers
+- [ ] See Following
+
+## Photos
+
+- [ ] See Photo
+- [ ] Upload Photo
+- [ ] Edit Photo
+- [ ] Like / Unlike Photo
+- [ ] See Photo Likes
+- [ ] See Feed
+- [ ] Search Photos
+- [ ] See Hashtags
+
+## Comments
+
+- [ ] Comment on Photo
+- [ ] Edit Comment
+- [ ] Delete Comment
+
+## 백엔드 테스트 중 Maximum call stack size exceeded Error 발생 시..
+1. Delete node_modules
+2. Add scripts "preinstall": "npx npm-force-resolutions" in pakage.json
+3. sudo npm i --unsafe-perm
