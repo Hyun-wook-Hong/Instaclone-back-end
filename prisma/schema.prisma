@@ -19,6 +19,7 @@ model User{
   password  String 
   bio       String?
   avatar    String?
+  // follwer, following data는 FollowRelation이라는 하나의 상관 관계를 가지는 것.
   followers User[]    @relation("FollowRelation", references: [id])
   following User[]    @relation("FollowRelation", references: [id])
   createdAt DateTime  @default(now())
