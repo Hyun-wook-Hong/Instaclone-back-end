@@ -1,17 +1,12 @@
-export default{
-    Query:{
-        seeFollowing: async(_, { username, cursor }) => {
-            const ok = await client.user
-            .findUnique({ 
-                where: { username },
-                select: { id: true }, 
-            });
-            if(!ok){
-                return{
-                    ok: false,
-                    error: "User not found",
-                };
-            }
-        },
-    },
-};
+import { gql } from "apollo-server";
+
+export default gql`
+  type SeeFollowingResult {
+    ok: Boolean!
+    error: String
+    following: [User]
+  }
+  type Query {
+    seeFollowing(username: String!, lastId: Int): SeeFollowingResult!
+  }
+`;
