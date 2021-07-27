@@ -96,7 +96,7 @@ npm install dotenv
 
 - [x] Upload Photo (Parse #)
 - [ ] Like / Unlike Photo
-- [ ] See Photo
+- [x] See Photo
 - [ ] Edit Photo
 - [ ] See Photo Likes
 - [ ] See Feed
