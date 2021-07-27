@@ -10,6 +10,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// User Model
 model User{
   id        Int       @id @default(autoincrement())
   firstName String
@@ -19,11 +20,33 @@ model User{
   password  String 
   bio       String?
   avatar    String?
+  photos    Photo[]
   // follwer, following data는 FollowRelation이라는 하나의 상관 관계를 가지는 것.
   followers User[]    @relation("FollowRelation", references: [id])
   following User[]    @relation("FollowRelation", references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+}
+
+//Photo Model
+model Photo{
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int
+  file      String
+  caption   String?
+  hashtags  Hashtag[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+//Hashtag Model
+model Hashtag{
+  id        Int       @id @default(autoincrement())
+  hashtag   String    @unique
+  photos    Photo[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt 
 }
 
 // self referencing relationship
