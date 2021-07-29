@@ -26,6 +26,7 @@ model User{
   following User[]    @relation("FollowRelation", references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  likes     Like[]
 }
 
 //Photo Model
@@ -38,6 +39,7 @@ model Photo{
   hashtags  Hashtag[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  likes      Like[]
 }
 
 //Hashtag Model
@@ -49,6 +51,16 @@ model Hashtag{
   updatedAt DateTime  @updatedAt 
 }
 
-// self referencing relationship
-//A.followers[B] = 1
-//B.following[A] = 1
+// Like / Unlike Model
+model Like{
+  id        Int       @id @default(autoincrement())
+  photo     Photo     @relation(fields: [photoId], references: [id])
+  user      User      @relation(fields: [userId],  references: [id])
+  photoId   Int
+  userId    Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt 
+
+  // compound unique, ID들을 복합으로 묶어서 unique 개체를 만들수있음
+  @@unique([photoId, userId])
+}

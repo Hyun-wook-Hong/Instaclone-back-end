@@ -98,9 +98,9 @@ npm install dotenv
 - [x] See Photo
 - [x] See Hashtags
 - [x] Search Photos
-- [ ] Like / Unlike Photo
-- [ ] Edit Photo
-- [ ] See Photo Likes
+- [x] Edit Photo
+- [x] Like / Unlike Photo
+- [x] See Photo Likes
 - [ ] See Feed
 
 ## Comments
