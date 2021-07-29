@@ -95,13 +95,13 @@ npm install dotenv
 ## Photos
 
 - [x] Upload Photo (Parse #)
-- [ ] Like / Unlike Photo
 - [x] See Photo
+- [x] See Hashtags
+- [x] Search Photos
+- [ ] Like / Unlike Photo
 - [ ] Edit Photo
 - [ ] See Photo Likes
 - [ ] See Feed
-- [ ] Search Photos
-- [ ] See Hashtags
 
 ## Comments
 

@@ -1,4 +1,5 @@
 import client from "../../client";
+import { processHashtags } from "../photos.utils";
 import {protectedResolver} from "../../users/users.utils";
 export default {
     Mutation: {
@@ -10,14 +11,7 @@ export default {
             // I love #food
             if (caption) {
                 // 한+영 해쉬태그 정규 표현식으로 추출 /#[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\w]+/g
-                const hashtags = caption.match(/#[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\w]+/g);
-                hashtagObj = hashtags.map(hashtag => ({
-                    where: {
-                        hashtag
-                    }, 
-                    create: {
-                        hashtag
-                    }}));
+                hashtagObj = processHashtags(caption);
             }
             // save the photo WITH the parsed hashtags add the photo to the hashtags
             return client.photo.create(

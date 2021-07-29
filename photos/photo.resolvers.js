@@ -23,8 +23,8 @@ export default {
             }),
     },
     Hashtag: {
-        photos: ({ id }, args) => {
-            console.log(args);
+        // 필드 안에 Resolver를 작성할수도 있음
+        photos: ({ id }, {page}, {loggedInUser}) => {
             return client.hashtag.findUnique({
                 where: {
                     id,
