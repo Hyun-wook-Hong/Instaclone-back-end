@@ -101,13 +101,19 @@ npm install dotenv
 - [x] Edit Photo
 - [x] Like / Unlike Photo
 - [x] See Photo Likes
-- [ ] See Feed
+- [x] See Feed
+- [ ] See Photo Comments
+- [ ] Delete Photo (If it is mine)
 
 ## Comments
 
-- [ ] Comment on Photo
+- [x] Comment on Photo
 - [ ] Edit Comment
-- [ ] Delete Comment
+- [ ] Delete Comment (If it is mine)
+
+## Extras
+
+- [ ] S3 Image Upload
 
 ## 백엔드 테스트 중 Maximum call stack size exceeded Error 발생 시..
 1. Delete node_modules
