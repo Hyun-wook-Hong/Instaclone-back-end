@@ -102,14 +102,18 @@ npm install dotenv
 - [x] Like / Unlike Photo
 - [x] See Photo Likes
 - [x] See Feed
-- [ ] See Photo Comments
-- [ ] Delete Photo (If it is mine)
+- [x] See Photo Comments
+- [x] Delete Photo (If it is mine)
 
 ## Comments
 
 - [x] Comment on Photo
-- [ ] Edit Comment
-- [ ] Delete Comment (If it is mine)
+- [x] Delete Comment (If it is mine)
+- [x] Edit Comment
+
+## Refactor
+
+- [x] Mutation Responses
 
 ## Extras
 

@@ -32,7 +32,14 @@ export default {
             where:{
                 photoId: id,
             }
-        })
+        }),
+        // 내가 올린 사진인지 여부 (작성자가 내 ID?)
+        isMine: ({ userId }, _, { loggedInUser }) => {
+            if (!loggedInUser) {
+              return false;
+            }
+            return userId === loggedInUser.id;
+          },
     },
     Hashtag: {
         // 필드 안에 Resolver를 작성할수도 있음
