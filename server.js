@@ -5,6 +5,7 @@ import logger from "morgan";
 import { ApolloServer } from "apollo-server-express";
 import { typeDefs, resolvers } from "./schema";
 import { getUser, protectResolver } from "./users/users.utils";
+import { graphqlUploadExpress } from "graphql-upload"; // added for createReamStream issue
 
 /* 5/24 comments. Mutation, queries arguments
    (root, elements, context, info)
@@ -23,6 +24,7 @@ const apollo = new ApolloServer({
   //schema = resolvers + typeDefs
   resolvers,
   typeDefs,
+  uploads: false, // added for createReamStream issue
   context: async({ req }) => {
     return{
       loggedInUser: await getUser(req.headers.token),
@@ -32,6 +34,7 @@ const apollo = new ApolloServer({
 });
 
 const app = express();
+app.use(graphqlUploadExpress());
 app.use(logger("tiny"));
 app.use("/static", express.static("uploads"));
 apollo.applyMiddleware({ app });
