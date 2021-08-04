@@ -117,7 +117,16 @@ npm install dotenv
 
 ## Extras
 
-- [ ] S3 Image Upload
+- [x] S3 Image Upload
+
+## DMs
+
+- [x] See Room
+- [x] Send Message (Create Room)
+- [x] See Rooms
+- [x] Computed Fields
+- [x] See (Read) Message
+- [ ] Realtime Messages
 
 ## 백엔드 테스트 중 Maximum call stack size exceeded Error 발생 시..
 1. Delete node_modules
