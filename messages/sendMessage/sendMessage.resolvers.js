@@ -1,5 +1,7 @@
 import { protectedResolver } from "../../users/users.utils";
 import client from "../../client";
+import pubsub from "../../pubsub";
+import { NEW_MESSAGE } from "../../constants";
 
 export default{
     Mutation:{
@@ -55,7 +57,7 @@ export default{
             }
 
             // 메세지는 아래와 같이 위 userId, roomId 판별이 끝난 후 생성
-            await client.message.create({
+            const message = await client.message.create({
                 data:{
                     payload,
                     room: {
@@ -70,6 +72,8 @@ export default{
                     },
                 },
             });
+            // WS Publish Logic
+            pubsub.publish(NEW_MESSAGE, { roomUpdates: { ...message } });
             return{
                 ok: true,
             };

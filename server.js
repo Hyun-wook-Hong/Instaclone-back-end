@@ -1,11 +1,13 @@
 /* Apollo Server & GraphQL variable */
 require("dotenv").config();
+import http from "http";
 import express from "express";
 import logger from "morgan";
 import { ApolloServer } from "apollo-server-express";
 import { typeDefs, resolvers } from "./schema";
 import { getUser, protectResolver } from "./users/users.utils";
 import { graphqlUploadExpress } from "graphql-upload"; // added for createReamStream issue
+import pubsub from "./pubsub";
 
 /* 5/24 comments. Mutation, queries arguments
    (root, elements, context, info)
@@ -26,9 +28,13 @@ const apollo = new ApolloServer({
   typeDefs,
   uploads: false, // added for createReamStream issue
   context: async({ req }) => {
-    return{
-      loggedInUser: await getUser(req.headers.token),
-      protectResolver,
+    // HTTP는 REQ-RES가 있지만, WS는 없음.
+    // WS도 다루기 위해 구문을 바꿈
+    if(req){
+      return{
+        loggedInUser: await getUser(req.headers.token),
+        protectResolver,
+      }
     }
   }
 });
@@ -36,10 +42,14 @@ const apollo = new ApolloServer({
 const app = express();
 app.use(graphqlUploadExpress());
 app.use(logger("tiny"));
-app.use("/static", express.static("uploads"));
 apollo.applyMiddleware({ app });
-app
-    .listen({ port:PORT }, 
+app.use("/static", express.static("uploads"));
+
+const httpServer = http.createServer(app);
+apollo.installSubscriptionHandlers(httpServer);
+
+httpServer
+    .listen(PORT, 
       () => 
       {
         console.log(`🚀 Server is running on http://localhost:${PORT}/ ✔`)
