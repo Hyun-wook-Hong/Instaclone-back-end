@@ -27,16 +27,33 @@ const apollo = new ApolloServer({
   resolvers,
   typeDefs,
   uploads: false, // added for createReamStream issue
-  context: async({ req }) => {
+  context: async(ctx) => {
     // HTTP는 REQ-RES가 있지만, WS는 없음.
     // WS도 다루기 위해 구문을 바꿈
-    if(req){
+    if(ctx.req){
       return{
-        loggedInUser: await getUser(req.headers.token),
+        loggedInUser: await getUser(ctx.req.headers.token),
         protectResolver,
-      }
+      };
+    } else{
+      const { connection: {context} } = ctx;
+      return{
+        loggedInUser: context.loggedInUser
+      };
     }
-  }
+  },
+
+  subscriptions: {
+    onConnect: async ({token}) => {
+      if(!token){
+        throw new Error("You can't listen.");
+      }
+      const loggedInUser = await getUser(token);
+      return{
+        loggedInUser,
+      };
+    },
+  },
 });
 
 const app = express();
