@@ -126,7 +126,7 @@ npm install dotenv
 - [x] See Rooms
 - [x] Computed Fields
 - [x] See (Read) Message
-- [ ] Realtime Messages
+- [x] Realtime Messages
 
 ## 백엔드 테스트 중 Maximum call stack size exceeded Error 발생 시..
 1. Delete node_modules

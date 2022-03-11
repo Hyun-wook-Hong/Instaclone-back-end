@@ -44,7 +44,7 @@ const apollo = new ApolloServer({
   },
 
   subscriptions: {
-    onConnect: async ({token}) => {
+    onConnect: async ({ token }) => {
       if(!token){
         throw new Error("You can't listen.");
       }
